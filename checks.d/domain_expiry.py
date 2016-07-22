@@ -43,4 +43,4 @@ class DomainCheck(NetworkCheck):
             status, msg =  0, "Days left: {0}".format(days_left.days)
         self.log.info(msg)
         self.log.info(status)
-        self.service_check("domain.expiry2", status, tags=['environment:production','role:webserver'], message=msg)
+        self.service_check("domain.expiry", status, tags=['environment:production','url:'+url], message=msg)
