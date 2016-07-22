@@ -31,15 +31,16 @@ class DomainCheck(NetworkCheck):
         self.log.info(days_left.days)
 
         if days_left.days < 0:
-            status, msg = Status.DOWN, "Expired by {0} days".format(days_left.days)
+            status, msg = 3, "Expired by {0} days".format(days_left.days)
 
         elif days_left.days < 7:
-            status, msg = Status.CRITICAL, "This cert TTL is critical: only {0} days before it expires".format(days_left.days)
+            status, msg = 2, "This cert TTL is critical: only {0} days before it expires".format(days_left.days)
 
         elif days_left.days < 30:
-            status, msg = Status.WARNING, "This cert is almost expired, only {0} days left".format(days_left.days)
+            status, msg = 1, "This cert is almost expired, only {0} days left".format(days_left.days)
 
         else:
-            status, msg =  Status.UP, "Days left: {0}".format(days_left.days)
-
-        self.service_check("domain.expiry2", status, tags=url,message=msg)
+            status, msg =  0, "Days left: {0}".format(days_left.days)
+        self.log.info(msg)
+        self.log.info(status)
+        self.service_check("domain.expiry2", status, tags=['environment:production','role:webserver'], message=msg)
