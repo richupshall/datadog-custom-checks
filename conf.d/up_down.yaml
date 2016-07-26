@@ -1,5 +1,12 @@
 init_config:
 
 instances:
-    [{}]
+  - name: Name1
+    url: https://www.example.com
+    tags:
+      - client:client1
 
+  - name: Name2
+    url: https://example.com
+    tags:
+      - client:client2
