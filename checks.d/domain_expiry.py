@@ -31,13 +31,13 @@ class DomainCheck(NetworkCheck):
         self.log.info(days_left.days)
 
         if days_left.days < 0:
-            status, msg = 3, "Expired by {0} days".format(days_left.days)
+            status, msg = 3, "Domain expired {0} days ago".format(days_left.days)
 
         elif days_left.days < 7:
-            status, msg = 2, "This cert TTL is critical: only {0} days before it expires".format(days_left.days)
+            status, msg = 2, "This domain is critical: only {0} days before it expires".format(days_left.days)
 
         elif days_left.days < 30:
-            status, msg = 1, "This cert is almost expired, only {0} days left".format(days_left.days)
+            status, msg = 1, "This domain is about to expire, only {0} days left".format(days_left.days)
 
         else:
             status, msg =  0, "Days left: {0}".format(days_left.days)
