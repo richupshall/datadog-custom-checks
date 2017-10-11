@@ -6,7 +6,7 @@ Collection of my own datadog checks
 
 pywhois required
 
-pip install python-whois
+/opt/datadog-agent/embedded/bin/pip install python-whois
 
 ### up_down
 
