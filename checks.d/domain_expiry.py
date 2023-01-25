@@ -18,7 +18,7 @@ class DomainCheck(NetworkCheck):
         self.log.info(url)
 
         #Use a hash of url as aggregation key
-        aggregation_key = md5(url).hexdigest()
+        aggregation_key = md5(url.encode()).hexdigest()
 
         record = whois.whois(url)
         today = datetime.utcnow()
